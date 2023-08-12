@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch and Display</title>
+</head>
+
+<body>
+
+    <!-- Paragraph where the fetched text will be displayed -->
+    <p id="displayText"></p>
+
+    <script>
+        // Function to fetch data from the API and display it
+        function fetchData() {
+            fetch('https://keefellow.pythonanywhere.com/randomtext')  // Replace with your API URL
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById('displayText').innerText = data.text;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('displayText').innerText = 'Failed to load data';
+                });
+        }
+
+        // Call the function when the page loads
+        window.onload = fetchData;
+    </script>
+
+</body>
+
+</html>
